@@ -111,11 +111,32 @@ const controlStorage = (function () {
     localStorage.setItem("lists", JSON.stringify(parsedLists));
   }
 
+  function updateList(list) {
+    const parsedLists = parseStoredLists();
+
+    const updatedLists = parsedLists.map((parsedList) => {
+      if (parsedList._id === list.id) {
+        const updatedList = {
+          _title: list.title,
+          _description: list.description,
+          _id: list.id,
+          _projectId: list.projectId,
+          _toDos: list.toDos,
+        };
+        return updatedList;
+      }
+      return parsedList;
+    });
+
+    localStorage.setItem("lists", JSON.stringify(updatedLists));
+  }
+
   return {
     setProject,
     updateProject,
     removeProject,
-    setList
+    setList,
+    updateList
   };
 })();
 
