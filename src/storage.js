@@ -279,6 +279,14 @@ const controlStorage = (function () {
     return parsedToDos;
   }
 
+  function recreateToDo(plainToDo) {
+    const toDo = new ToDo(plainToDo._name, plainToDo._id, plainToDo._listId);
+
+    Object.assign(toDo, plainToDo);
+
+    return toDo;
+  }
+
   return {
     setProject,
     updateProject,
