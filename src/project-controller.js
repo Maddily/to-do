@@ -393,6 +393,30 @@ const controlProjects = (function () {
     defaultProject.addToDoList(defaultList);
   }
 
+  /**
+   * When a project heading/name is clicked, the heading
+   * is replaced with an input field for a new name.
+   */
+  function displayrRenameProjectField() {
+    const projectHeadings = document.querySelectorAll(".project-heading");
+
+    projectHeadings.forEach((projectHeading) => {
+      projectHeading.addEventListener("click", () => {
+        const currentProjectName =
+          projectHeading.querySelector(".project-name").textContent;
+        const renameProjectInput =
+          projectHeading.nextElementSibling.querySelector(
+            ".rename-project-input"
+          );
+
+        renameProjectInput.value = currentProjectName;
+        projectHeading.style.display = "none";
+        renameProjectInput.style.display = "block";
+        renameProjectInput.nextElementSibling.style.display = "block";
+      });
+    });
+  }
+
   return {
     createProject,
     removeProject,
@@ -400,7 +424,8 @@ const controlProjects = (function () {
     initializeProjectDeletion,
     displayDeleteProjectButton,
     displayProjects,
-    createDefaultProject
+    createDefaultProject,
+    displayrRenameProjectField
   };
 })();
 
