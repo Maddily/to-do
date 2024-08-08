@@ -89,10 +89,33 @@ const controlStorage = (function () {
     return parsedProjects;
   }
 
+  function setList(list) {
+    const parsedLists = parseStoredLists();
+
+    const listExists = parsedLists.some(
+      (parsedList) => parsedList._id === list.id
+    );
+    if (listExists) {
+      return;
+    }
+
+    const plainList = {
+      _title: list.title,
+      _description: list.description,
+      _id: list.id,
+      _projectId: list.projectId,
+      _toDos: list.toDos,
+    };
+
+    parsedLists.push(plainList);
+    localStorage.setItem("lists", JSON.stringify(parsedLists));
+  }
+
   return {
     setProject,
     updateProject,
-    removeProject
+    removeProject,
+    setList
   };
 })();
 
