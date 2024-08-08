@@ -180,6 +180,25 @@ const listController = (function () {
     });
   }
 
+  function updateListDescription() {
+    const listDescription = document.querySelector(".list-description");
+    listDescription.addEventListener("input", () => {
+      if (listDescription.value) {
+        const listId = listDescription.dataset.id;
+        const projectId =
+          listDescription.parentElement.parentElement.dataset.project;
+        const project = controlProjects.projects.find((project) => {
+          return project.id === projectId;
+        });
+        const list = project.toDoLists.find((todoList) => {
+          return todoList.id == listId;
+        });
+
+        list.description = listDescription.value;
+      }
+    });
+  }
+
   return {
     displayNewListInput,
     displayNewListDescriptionInput,
@@ -188,7 +207,8 @@ const listController = (function () {
     displayDeleteListButton,
     deleteList,
     initializeListDeletion,
-    updateListTitle
+    updateListTitle,
+    updateListDescription
   };
 })();
 
