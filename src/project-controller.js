@@ -343,12 +343,50 @@ const controlProjects = (function () {
     projectContainer.appendChild(listContainer);
   }
 
+  // Display current projects and their ToDo lists.
+  function displayProjects() {
+    const projectsContainer = document.querySelector(".projects-container");
+
+    projectsContainer.innerHTML = "";
+
+    for (let i = 0; i < controlProjects.projects.length; i++) {
+      const projectContainer = document.createElement("div");
+
+      projectContainer.classList.add("project-container");
+      projectContainer.setAttribute("data-id", controlProjects.projects[i].id);
+
+      // Display the project heading.
+      displayProjectHeading(i, projectContainer);
+
+      /**
+       * For projects with no lists in them,
+       * put the input fields right after the project heading.
+       */
+      if (controlProjects.projects[i].toDoLists.length === 0) {
+        displayListInputAfterProjectHeading(projectContainer);
+      }
+
+      // Display ToDo lists of a project.
+      for (let j = 0; j < controlProjects.projects[i].toDoLists.length; j++) {
+        displayProjectLists(projectContainer, i, j);
+
+        // Add new list input fields below the last ToDo list.
+        if (j === controlProjects.projects[i].toDoLists.length - 1) {
+          displayListInput(projectContainer);
+        }
+      }
+
+      projectsContainer.appendChild(projectContainer);
+    }
+  }
+
   return {
     createProject,
     removeProject,
     initializeProjectCreation,
     initializeProjectDeletion,
-    displayDeleteProjectButton
+    displayDeleteProjectButton,
+    displayProjects
   };
 })();
 
