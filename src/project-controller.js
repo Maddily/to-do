@@ -137,6 +137,20 @@ const controlProjects = (function () {
     return projectIcon;
   }
 
+  /**
+   * Create the project name element
+   *
+   * @param {Number} i - The index of a project in the projects array
+   * @returns The projectName element
+   */
+  function createProjectName(i) {
+    const projectName = document.createElement("span");
+    projectName.classList.add("project-name");
+    projectName.textContent = controlProjects.projects[i].name;
+
+    return projectName;
+  }
+
   return {
     createProject,
     removeProject,
