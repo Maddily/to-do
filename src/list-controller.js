@@ -79,6 +79,45 @@ const listController = (function () {
     });
   }
 
+  function createList(button) {
+    const listTitle =
+      button.previousElementSibling.previousElementSibling.value.trim();
+    const listDescription = button.previousElementSibling.value.trim();
+    const projectId = button.parentElement.dataset.id;
+
+    /**
+     * Make sure both title and description are present,
+     * then find the project to which a list is to be added.
+     */
+    if (listTitle && listDescription) {
+      const thisProject = controlProjects.projects.find((project) => {
+        return project.id === projectId;
+      });
+
+      // No duplicate list names
+      const lists = thisProject.toDoLists;
+      const listExists = lists.find((list) => {
+        return list.title === listTitle;
+      });
+
+      if (listExists) return;
+
+      // Create the list
+      const toDoList = new ToDoList(
+        listTitle,
+        listDescription,
+        undefined,
+        projectId
+      );
+
+      thisProject.addToDoList(toDoList);
+      controlProjects.displayProjects();
+
+      // Re-attach event listeners after creating a list
+      reAttachEventListeners();
+    }
+  }
+
   return {
     displayNewListInput,
     displayNewListDescriptionInput,
