@@ -299,6 +299,14 @@ const controlStorage = (function () {
     return toDos;
   }
 
+  function getData() {
+    const toDos = getToDos();
+    const lists = getLists(toDos);
+    const projects = getProjects(lists);
+
+    return projects;
+  }
+
   return {
     setProject,
     updateProject,
@@ -311,7 +319,8 @@ const controlStorage = (function () {
     updateToDo,
     removeToDo,
     removeToDosOfList,
-    removeToDosOfLists
+    removeToDosOfLists,
+    getData
   };
 })();
 
