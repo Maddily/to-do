@@ -30,8 +30,28 @@ const controlProjects = (function () {
     return project;
   }
 
+  function removeProject(projectId) {
+    const project = controlProjects.projects.find(
+      (project) => project.id === projectId
+    );
+    controlProjects.projects = controlProjects.projects.filter(
+      (item) => item !== project
+    );
+    if (project) {
+      controlStorage.removeToDosOfLists(project.toDoLists);
+      controlStorage.removeListsOfProject(project.toDoLists);
+      controlStorage.removeProject(projectId);
+    }
+
+    // Re-display the projects after deleting a project
+    displayProjects();
+
+    reAttachEventListeners();
+  }
+
   return {
-    createProject
+    createProject,
+    removeProject
   };
 })();
 
