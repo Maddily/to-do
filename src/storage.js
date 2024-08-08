@@ -50,6 +50,14 @@ const controlStorage = (function () {
     localStorage.setItem("projects", JSON.stringify(filteredProjects));
   }
 
+  function recreateProject(plainProject) {
+    const project = new Project(plainProject._name, plainProject._id);
+
+    Object.assign(project, plainProject);
+
+    return project;
+  }
+
   return {
     setProject,
     updateProject,
