@@ -91,6 +91,22 @@ const controlProjects = (function () {
     });
   }
 
+  /**
+   * Delete a displayed list if the project to which
+   * it belongs no longer exists.
+   */
+  function clearNonExistingListFromDisplay() {
+    const listContainer = document.querySelector(".list-container");
+    if (listContainer) {
+      const project = controlProjects.projects.find(
+        (project) => project.id === listContainer.dataset.project
+      );
+      if (!project) {
+        displayContent.clearListDisplay();
+      }
+    }
+  }
+
   return {
     createProject,
     removeProject,
