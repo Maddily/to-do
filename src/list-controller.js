@@ -118,11 +118,26 @@ const listController = (function () {
     }
   }
 
+  // When a list is hovered over, display a button that enables deleting the list
+  function displayDeleteListButton() {
+    const lists = document.querySelectorAll(".list");
+
+    lists.forEach((list) => {
+      list.addEventListener("mouseover", () => {
+        list.querySelector(".delete-list").style.display = "block";
+      });
+      list.addEventListener("mouseout", () => {
+        list.querySelector(".delete-list").style.display = "none";
+      });
+    });
+  }
+
   return {
     displayNewListInput,
     displayNewListDescriptionInput,
     displayAddNewListButton,
-    initializeListCreation
+    initializeListCreation,
+    displayDeleteListButton
   };
 })();
 
