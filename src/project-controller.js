@@ -77,10 +77,25 @@ const controlProjects = (function () {
     reAttachEventListeners();
   }
 
+  // Listen for clicks on delete project buttons and handle deletion
+  function initializeProjectDeletion() {
+    const deleteProjectButtons = document.querySelectorAll(".delete-project");
+
+    deleteProjectButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        removeProject(button.dataset.id);
+
+        reAttachEventListeners();
+        clearNonExistingListFromDisplay();
+      });
+    });
+  }
+
   return {
     createProject,
     removeProject,
-    initializeProjectCreation
+    initializeProjectCreation,
+    initializeProjectDeletion
   };
 })();
 
