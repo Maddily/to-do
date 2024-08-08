@@ -476,6 +476,7 @@ const controlProjects = (function () {
   }
 
   return {
+    projects,
     createProject,
     removeProject,
     initializeProjectCreation,
