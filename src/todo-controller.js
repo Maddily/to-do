@@ -28,6 +28,17 @@ const todoController = (function () {
     });
   }
 
+  // Display add todo button after receiving todo name input
+  function displayAddNewTodoButton() {
+    const newTodoFields = document.querySelectorAll(".new-todo-name");
+
+    newTodoFields.forEach((newTodoField) => {
+      newTodoField.addEventListener("input", () => {
+        newTodoField.nextElementSibling.style.display = "block";
+      });
+    });
+  }
+
   return {};
 })();
 
