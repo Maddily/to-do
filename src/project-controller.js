@@ -49,9 +49,23 @@ const controlProjects = (function () {
     reAttachEventListeners();
   }
 
+    // Listen for new project input and handle project creation
+    function initializeProjectCreation() {
+      const addButton = document.querySelector(".add-new-project");
+      const input = document.querySelector(".new-project-input");
+  
+      addButton.addEventListener("click", handleProjectCreation);
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          handleProjectCreation();
+        }
+      });
+    }
+
   return {
     createProject,
-    removeProject
+    removeProject,
+    initializeProjectCreation
   };
 })();
 
