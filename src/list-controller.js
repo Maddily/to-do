@@ -49,10 +49,41 @@ const listController = (function () {
     });
   }
 
+  // Listen for new list input and call createList()
+  function initializeListCreation() {
+    const addNewListButtons = document.querySelectorAll(".add-list");
+
+    // Enable adding lists by pressing Enter
+    const newListInputFields = document.querySelectorAll(".new-list-title");
+    newListInputFields.forEach((newListInputField) => {
+      newListInputField.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          createList(newListInputField.nextElementSibling.nextElementSibling);
+        }
+      });
+    });
+
+    const newListDescriptionFields = document.querySelectorAll(
+      ".new-list-description"
+    );
+    newListDescriptionFields.forEach((newListDescriptionField) => {
+      newListDescriptionField.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          createList(newListDescriptionField.nextElementSibling);
+        }
+      });
+    });
+
+    addNewListButtons.forEach((button) => {
+      button.addEventListener("click", () => createList(button));
+    });
+  }
+
   return {
     displayNewListInput,
     displayNewListDescriptionInput,
-    displayAddNewListButton
+    displayAddNewListButton,
+    initializeListCreation
   };
 })();
 
