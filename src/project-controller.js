@@ -107,11 +107,25 @@ const controlProjects = (function () {
     }
   }
 
+  function displayDeleteProjectButton() {
+    const projectHeadings = document.querySelectorAll(".project-heading");
+
+    projectHeadings.forEach((projectHeading) => {
+      projectHeading.addEventListener("mouseover", () => {
+        projectHeading.querySelector(".delete-project").style.display = "block";
+      });
+      projectHeading.addEventListener("mouseout", () => {
+        projectHeading.querySelector(".delete-project").style.display = "none";
+      });
+    });
+  }
+
   return {
     createProject,
     removeProject,
     initializeProjectCreation,
-    initializeProjectDeletion
+    initializeProjectDeletion,
+    displayDeleteProjectButton
   };
 })();
 
