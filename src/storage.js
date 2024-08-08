@@ -287,6 +287,18 @@ const controlStorage = (function () {
     return toDo;
   }
 
+  function getToDos() {
+    const parsedToDos = parseStoredToDos();
+
+    const toDos = parsedToDos.map((parsedToDo) => {
+      const toDo = recreateToDo(parsedToDo);
+
+      return toDo;
+    });
+
+    return toDos;
+  }
+
   return {
     setProject,
     updateProject,
