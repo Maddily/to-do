@@ -23,8 +23,27 @@ const controlStorage = (function () {
     localStorage.setItem("projects", JSON.stringify(parsedProjects));
   }
 
+  function updateProject(project) {
+    const parsedProjects = parseStoredProjects();
+
+    const updatedProjects = parsedProjects.map((parsedProject) => {
+      if (parsedProject._id === project.id) {
+        const updatedProject = {
+          _name: project.name,
+          _id: project.id,
+          _toDoLists: project.toDoLists,
+        };
+        return updatedProject;
+      }
+      return parsedProject;
+    });
+
+    localStorage.setItem("projects", JSON.stringify(updatedProjects));
+  }
+
   return {
-    setProject
+    setProject,
+    updateProject
   };
 })();
 
