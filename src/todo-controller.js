@@ -57,6 +57,16 @@ const todoController = (function () {
     });
   }
 
+  // Checks if a ToDo already exists
+  function isTodoPresent(list, todoName) {
+    const todos = list.toDos;
+    const todoExists = todos.find((todo) => {
+      return todo.name === todoName;
+    });
+
+    return todoExists;
+  }
+
   return {};
 })();
 
