@@ -241,6 +241,15 @@ const controlProjects = (function () {
     `;
   }
 
+  // Display input fields for adding a new list below existing lists
+  function displayListInput(projectContainer) {
+    projectContainer.innerHTML += `
+      <input class='new-list-title' type='text' placeholder='New List'>
+      <input class='new-list-description' placeholder='New List Description'>
+      <button class='add-list'>Add New List</button>
+    `;
+  }
+
   return {
     createProject,
     removeProject,
