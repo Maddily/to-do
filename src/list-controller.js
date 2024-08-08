@@ -132,12 +132,27 @@ const listController = (function () {
     });
   }
 
+  function deleteList(projectId, listId) {
+    const project = controlProjects.projects.find(
+      (project) => project.id === projectId
+    );
+    const list = project.toDoLists.find((toDoList) => toDoList.id === listId);
+
+    project.removeToDoList(list);
+
+    // Re-display the projects after deleting a list
+    controlProjects.displayProjects();
+
+    reAttachEventListeners();
+  }
+
   return {
     displayNewListInput,
     displayNewListDescriptionInput,
     displayAddNewListButton,
     initializeListCreation,
-    displayDeleteListButton
+    displayDeleteListButton,
+    deleteList
   };
 })();
 
