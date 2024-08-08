@@ -443,6 +443,38 @@ const controlProjects = (function () {
     });
   }
 
+  // Renames a project, safely
+  function renameProjectHelper(renameProjectButton) {
+    const newProjectName =
+      renameProjectButton.previousElementSibling.value.trim();
+    const projectHeading =
+      renameProjectButton.parentElement.previousElementSibling;
+    const projectId = projectHeading.parentElement.dataset.id;
+
+    // No duplicate project names
+    const projectExists = controlProjects.projects.some((project) => {
+      return project.name === newProjectName;
+    });
+
+    const currentProjectName = controlProjects.projects.find(
+      (project) => project.id === projectId
+    ).name;
+    if (!projectExists || currentProjectName === newProjectName) {
+      projectHeading.querySelector(".project-name").textContent =
+        newProjectName;
+
+      // Hide the input field and button and redisplay the project heading
+      projectHeading.style.display = "flex";
+      renameProjectButton.previousElementSibling.style.display = "none";
+      renameProjectButton.style.display = "none";
+
+      // Update the name of the project in projects array
+      controlProjects.projects.find(
+        (project) => project.id === projectId
+      ).name = newProjectName;
+    }
+  }
+
   return {
     createProject,
     removeProject,
