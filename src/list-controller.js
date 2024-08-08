@@ -146,13 +146,30 @@ const listController = (function () {
     reAttachEventListeners();
   }
 
+  // Listen for clicks on delete list buttons and handle deletion
+  function initializeListDeletion() {
+    const deleteListButtons = document.querySelectorAll(".delete-list");
+
+    deleteListButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const projectId = button.parentElement.parentElement.dataset.id;
+        const listId = button.dataset.id;
+
+        deleteList(projectId, listId);
+
+        reAttachEventListeners();
+      });
+    });
+  }
+
   return {
     displayNewListInput,
     displayNewListDescriptionInput,
     displayAddNewListButton,
     initializeListCreation,
     displayDeleteListButton,
-    deleteList
+    deleteList,
+    initializeListDeletion
   };
 })();
 
