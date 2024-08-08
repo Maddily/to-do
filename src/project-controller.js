@@ -173,6 +173,38 @@ const controlProjects = (function () {
     return deleteProjectIcon;
   }
 
+  /**
+   * Create the elements necessary for updating the name
+   * of a project
+   *
+   * @returns A container for the input field used to rename
+   * a project, and a button to submit changes
+   */
+  function createRenameProjectElements() {
+    const renameProjectContainer = document.createElement("div");
+    renameProjectContainer.classList.add("rename-project");
+
+    const renameProjectInput = document.createElement("input");
+    renameProjectInput.classList.add("rename-project-input");
+    renameProjectInput.setAttribute("type", "text");
+    renameProjectInput.setAttribute("name", "project");
+    renameProjectInput.setAttribute("placeholder", "New Project Name");
+
+    const renameProjectButton = document.createElement("svg");
+    renameProjectButton.classList.add("rename-project-button");
+    renameProjectButton.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    renameProjectButton.setAttribute("viewBox", "0 0 24 24");
+    renameProjectButton.setAttribute("fill", "#717ed4");
+    renameProjectButton.innerHTML = `
+      <title>Rename Project</title>
+      <path d="M18.9,8.1L9,18L4.05,13.05L4.76,12.34L9,16.59L18.19,7.39L18.9,8.1Z" />
+    `;
+
+    renameProjectContainer.append(renameProjectInput, renameProjectButton);
+
+    return renameProjectContainer;
+  }
+
   return {
     createProject,
     removeProject,
