@@ -217,6 +217,27 @@ const controlStorage = (function () {
     localStorage.setItem("toDos", JSON.stringify(parsedToDos));
   }
 
+  function updateToDo(toDo) {
+    const parsedToDos = parseStoredToDos();
+
+    const updatedToDos = parsedToDos.map((parsedToDo) => {
+      if (parsedToDo._id === toDo.id) {
+        const updatedToDo = {
+          _name: toDo.name,
+          _id: toDo.id,
+          _listId: toDo.listId,
+          _notes: toDo.notes,
+          _checklist: toDo.checklist,
+          _dueDate: toDo.dueDate,
+        };
+        return updatedToDo;
+      }
+      return parsedToDo;
+    });
+
+    localStorage.setItem("toDos", JSON.stringify(updatedToDos));
+  }
+
   return {
     setProject,
     updateProject,
@@ -225,7 +246,8 @@ const controlStorage = (function () {
     updateList,
     removeList,
     removeListsOfProject,
-    setToDo
+    setToDo,
+    updateToDo
   };
 })();
 
