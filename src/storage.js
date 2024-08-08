@@ -151,6 +151,18 @@ const controlStorage = (function () {
     localStorage.setItem("lists", JSON.stringify(filteredLists));
   }
 
+  function recreateList(plainList) {
+    const list = new ToDoList(
+      plainList._title,
+      plainList._description,
+      plainList._id
+    );
+
+    Object.assign(list, plainList);
+
+    return list;
+  }
+
   return {
     setProject,
     updateProject,
