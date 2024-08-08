@@ -138,13 +138,27 @@ const controlStorage = (function () {
     localStorage.setItem("lists", JSON.stringify(filteredLists));
   }
 
+  function removeListsOfProject(toDoLists) {
+    if (!toDoLists) {
+      return;
+    }
+
+    const parsedLists = parseStoredLists();
+
+    const filteredLists = parsedLists.filter((item) => {
+      return !toDoLists.some((toDoList) => toDoList.id === item._id);
+    });
+    localStorage.setItem("lists", JSON.stringify(filteredLists));
+  }
+
   return {
     setProject,
     updateProject,
     removeProject,
     setList,
     updateList,
-    removeList
+    removeList,
+    removeListsOfProject
   };
 })();
 
