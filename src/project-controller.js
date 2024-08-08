@@ -205,6 +205,29 @@ const controlProjects = (function () {
     return renameProjectContainer;
   }
 
+  /**
+   * Display the heading of a project consisting of a project icon,
+   * the name of the project and an icon/button used to delete the project
+   *
+   * @param {Number} i - The index of a project in the projects array
+   * @param {Element} projectContainer - The container of a specific project
+   */
+  function displayProjectHeading(i, projectContainer) {
+    const projectHeading = document.createElement("div");
+    projectHeading.classList.add("project-heading");
+
+    const projectIcon = createProjectIcon();
+    const projectName = createProjectName(i);
+    const deleteProjectIcon = createDeleteProjectIcon(i);
+
+    projectHeading.append(projectIcon, projectName, deleteProjectIcon);
+
+    const renameProjectContainer = createRenameProjectElements();
+
+    projectContainer.appendChild(projectHeading);
+    projectContainer.appendChild(renameProjectContainer);
+  }
+
   return {
     createProject,
     removeProject,
