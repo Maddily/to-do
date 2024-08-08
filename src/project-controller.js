@@ -228,6 +228,19 @@ const controlProjects = (function () {
     projectContainer.appendChild(renameProjectContainer);
   }
 
+  /**
+   * In case the project contains no todo lists, the input
+   * fields to add a new list are visible right after the
+   * project's heading
+   */
+  function displayListInputAfterProjectHeading(projectContainer) {
+    projectContainer.innerHTML += `
+      <input class='new-list-title' type='text' placeholder='New List'>
+      <input class='new-list-description' placeholder='New List Description'>
+      <button class='add-list'>Add New List</button>
+    `;
+  }
+
   return {
     createProject,
     removeProject,
