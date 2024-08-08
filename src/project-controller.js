@@ -120,6 +120,23 @@ const controlProjects = (function () {
     });
   }
 
+  function createProjectIcon() {
+    const projectIcon = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "svg"
+    );
+
+    projectIcon.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    projectIcon.setAttribute("viewBox", "0 0 24 24");
+    projectIcon.setAttribute("fill", "#717ed4");
+    projectIcon.innerHTML = `
+      <title>Project</title>
+      <path d="M5,5H9L12,8H18C19.66,8 21,9.34 21,11V17C21,18.66 19.66,20 18,20H5C3.34,20 2,18.66 2,17V8C2,6.34 3.34,5 5,5M5,6C3.9,6 3,6.9 3,8V17C3,18.1 3.9,19 5,19H18C19.1,19 20,18.1 20,17V11C20,9.9 19.1,9 18,9H11.59L8.59,6H5Z" />
+    `;
+
+    return projectIcon;
+  }
+
   return {
     createProject,
     removeProject,
