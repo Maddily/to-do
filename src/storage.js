@@ -41,9 +41,19 @@ const controlStorage = (function () {
     localStorage.setItem("projects", JSON.stringify(updatedProjects));
   }
 
+  function removeProject(projectId) {
+    const parsedProjects = parseStoredProjects();
+
+    const filteredProjects = parsedProjects.filter(
+      (item) => item._id !== projectId
+    );
+    localStorage.setItem("projects", JSON.stringify(filteredProjects));
+  }
+
   return {
     setProject,
-    updateProject
+    updateProject,
+    removeProject
   };
 })();
 
