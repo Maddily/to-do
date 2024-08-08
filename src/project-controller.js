@@ -278,6 +278,44 @@ const controlProjects = (function () {
     return listIcon;
   }
 
+  /**
+   * Create an icon used to delete a list
+   *
+   * @param {Number} i - The index of a project in the projects array
+   * @param {Number} j - The index of a todo in the toDoLists array
+   * @returns The icon used to delete a list
+   */
+  function createDeleteListIcon(i, j) {
+    const deleteListIcon = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "svg"
+    );
+    deleteListIcon.classList.add("delete-list");
+    deleteListIcon.setAttribute(
+      "data-id",
+      controlProjects.projects[i].toDoLists[j].id
+    );
+    deleteListIcon.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    deleteListIcon.setAttribute("viewBox", "0 0 24 24");
+    deleteListIcon.setAttribute("fill", "#717ed4");
+
+    const deleteListIconTitle = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "title"
+    );
+    deleteListIconTitle.textContent = "Delete List";
+
+    const deleteListIconPath = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "path"
+    );
+    deleteListIconPath.setAttribute("d", "M5,13V12H18V13H5Z");
+
+    deleteListIcon.append(deleteListIconTitle, deleteListIconPath);
+
+    return deleteListIcon;
+  }
+
   return {
     createProject,
     removeProject,
