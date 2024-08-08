@@ -417,6 +417,32 @@ const controlProjects = (function () {
     });
   }
 
+  /**
+   * Enable renaming a project when rename project button is clicked
+   * or when Enter key is pressed.
+   */
+  function renameProject() {
+    const renameProjectButtons = document.querySelectorAll(
+      ".rename-project-button"
+    );
+    renameProjectButtons.forEach((renameProjectButton) => {
+      renameProjectButton.addEventListener("click", () => {
+        renameProjectHelper(renameProjectButton);
+      });
+    });
+
+    const renameProjectInputFields = document.querySelectorAll(
+      ".rename-project-input"
+    );
+    renameProjectInputFields.forEach((renameProjectInputField) => {
+      renameProjectInputField.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          renameProjectHelper(renameProjectInputField.nextElementSibling);
+        }
+      });
+    });
+  }
+
   return {
     createProject,
     removeProject,
@@ -425,7 +451,8 @@ const controlProjects = (function () {
     displayDeleteProjectButton,
     displayProjects,
     createDefaultProject,
-    displayrRenameProjectField
+    displayrRenameProjectField,
+    renameProject
   };
 })();
 
