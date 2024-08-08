@@ -25,8 +25,20 @@ const listController = (function () {
     });
   }
 
+  // Display new list description input field upon receiving new list title input
+  function displayNewListDescriptionInput() {
+    const newListInputFields = document.querySelectorAll(".new-list-title");
+
+    newListInputFields.forEach((newListInputField) => {
+      newListInputField.addEventListener("input", () => {
+        newListInputField.nextElementSibling.style.display = "block";
+      });
+    });
+  }
+
   return {
-    displayNewListInput
+    displayNewListInput,
+    displayNewListDescriptionInput
   };
 })();
 
