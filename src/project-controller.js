@@ -380,13 +380,27 @@ const controlProjects = (function () {
     }
   }
 
+  // Create a default project as the starting point. It can be deleted by the user.
+  function createDefaultProject() {
+    const defaultProject = createProject("My Project");
+    const defaultList = new ToDoList(
+      "My List",
+      "This is my first list.",
+      undefined,
+      defaultProject.id
+    );
+
+    defaultProject.addToDoList(defaultList);
+  }
+
   return {
     createProject,
     removeProject,
     initializeProjectCreation,
     initializeProjectDeletion,
     displayDeleteProjectButton,
-    displayProjects
+    displayProjects,
+    createDefaultProject
   };
 })();
 
