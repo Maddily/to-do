@@ -58,6 +58,22 @@ const controlStorage = (function () {
     return project;
   }
 
+  function getProjects(lists) {
+    const parsedProjects = parseStoredProjects();
+
+    const projects = parsedProjects.map((parsedProject) => {
+      const project = recreateProject(parsedProject);
+
+      project.toDoLists = lists.filter((list) => {
+        return list.projectId === project.id;
+      });
+
+      return project;
+    });
+
+    return projects;
+  }
+
   return {
     setProject,
     updateProject,
