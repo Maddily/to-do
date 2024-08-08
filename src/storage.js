@@ -74,6 +74,21 @@ const controlStorage = (function () {
     return projects;
   }
 
+  function parseStoredProjects() {
+    const storedProjects = localStorage.getItem("projects");
+    let parsedProjects = [];
+
+    if (storedProjects) {
+      try {
+        parsedProjects = JSON.parse(storedProjects);
+      } catch (error) {
+        console.error("Failed to parse stored projects:", error);
+      }
+    }
+
+    return parsedProjects;
+  }
+
   return {
     setProject,
     updateProject,
