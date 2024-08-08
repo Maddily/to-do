@@ -39,6 +39,24 @@ const todoController = (function () {
     });
   }
 
+  // Listen for new todo input and call createTodo()
+  function initializeTodoCreation() {
+    const addNewTodoButtons = document.querySelectorAll(".add-todo");
+    const newTodoInputFields = document.querySelectorAll(".new-todo-name");
+
+    newTodoInputFields.forEach((newTodoInputField) => {
+      newTodoInputField.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          createTodo(newTodoInputField.nextElementSibling);
+        }
+      });
+    });
+
+    addNewTodoButtons.forEach((button) => {
+      button.addEventListener("click", () => createTodo(button));
+    });
+  }
+
   return {};
 })();
 
