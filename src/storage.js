@@ -258,6 +258,12 @@ const controlStorage = (function () {
     localStorage.setItem("toDos", JSON.stringify(filteredToDos));
   }
 
+  function removeToDosOfLists(toDoLists) {
+    for (const toDoList of toDoLists) {
+      removeToDosOfList(toDoList.toDos);
+    }
+  }
+
   return {
     setProject,
     updateProject,
@@ -269,7 +275,8 @@ const controlStorage = (function () {
     setToDo,
     updateToDo,
     removeToDo,
-    removeToDosOfList
+    removeToDosOfList,
+    removeToDosOfLists
   };
 })();
 
