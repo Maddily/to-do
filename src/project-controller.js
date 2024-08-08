@@ -49,18 +49,33 @@ const controlProjects = (function () {
     reAttachEventListeners();
   }
 
-    // Listen for new project input and handle project creation
-    function initializeProjectCreation() {
-      const addButton = document.querySelector(".add-new-project");
-      const input = document.querySelector(".new-project-input");
-  
-      addButton.addEventListener("click", handleProjectCreation);
-      input.addEventListener("keydown", (e) => {
-        if (e.key === "Enter") {
-          handleProjectCreation();
-        }
-      });
+  // Listen for new project input and handle project creation
+  function initializeProjectCreation() {
+    const addButton = document.querySelector(".add-new-project");
+    const input = document.querySelector(".new-project-input");
+
+    addButton.addEventListener("click", handleProjectCreation);
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        handleProjectCreation();
+      }
+    });
+  }
+
+  // Get new project input and create a project
+  function handleProjectCreation() {
+    const input = document.querySelector(".new-project-input");
+    const newProjectName = input.value.trim();
+
+    if (!newProjectName) {
+      return;
     }
+
+    createProject(newProjectName);
+    input.value = "";
+
+    reAttachEventListeners();
+  }
 
   return {
     createProject,
