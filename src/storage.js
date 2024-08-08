@@ -194,6 +194,29 @@ const controlStorage = (function () {
     return parsedLists;
   }
 
+  function setToDo(toDo) {
+    const parsedToDos = parseStoredToDos();
+
+    const toDoExists = parsedToDos.some(
+      (parsedToDo) => parsedToDo._id === toDo.id
+    );
+    if (toDoExists) {
+      return;
+    }
+
+    const plainToDo = {
+      _name: toDo.name,
+      _id: toDo.id,
+      _listId: toDo.listId,
+      _notes: toDo.notes,
+      _checklist: toDo.checklist,
+      _dueDate: toDo.dueDate,
+    };
+
+    parsedToDos.push(plainToDo);
+    localStorage.setItem("toDos", JSON.stringify(parsedToDos));
+  }
+
   return {
     setProject,
     updateProject,
@@ -201,7 +224,8 @@ const controlStorage = (function () {
     setList,
     updateList,
     removeList,
-    removeListsOfProject
+    removeListsOfProject,
+    setToDo
   };
 })();
 
