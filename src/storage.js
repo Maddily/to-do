@@ -131,12 +131,20 @@ const controlStorage = (function () {
     localStorage.setItem("lists", JSON.stringify(updatedLists));
   }
 
+  function removeList(list) {
+    const parsedLists = parseStoredLists();
+
+    const filteredLists = parsedLists.filter((item) => item._id !== list.id);
+    localStorage.setItem("lists", JSON.stringify(filteredLists));
+  }
+
   return {
     setProject,
     updateProject,
     removeProject,
     setList,
-    updateList
+    updateList,
+    removeList
   };
 })();
 
