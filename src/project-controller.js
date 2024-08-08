@@ -151,6 +151,28 @@ const controlProjects = (function () {
     return projectName;
   }
 
+  /**
+   * Create an svg icon to delete a project
+   *
+   * @param {Number} i - The index of a project in the projects array
+   * @returns The icon used to delete a project
+   */
+  function createDeleteProjectIcon(i) {
+    const deleteProjectIcon = document.createElement("svg");
+
+    deleteProjectIcon.classList.add("delete-project");
+    deleteProjectIcon.setAttribute("data-id", controlProjects.projects[i].id);
+    deleteProjectIcon.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    deleteProjectIcon.setAttribute("viewBox", "0 0 24 24");
+    deleteProjectIcon.setAttribute("fill", "#717ed4");
+    deleteProjectIcon.innerHTML = `
+      <title>Delete Project</title>
+      <path d="M5,13V12H18V13H5Z" />
+    `;
+
+    return deleteProjectIcon;
+  }
+
   return {
     createProject,
     removeProject,
