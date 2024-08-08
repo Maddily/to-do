@@ -36,9 +36,23 @@ const listController = (function () {
     });
   }
 
+  // Display add list button after receiving list title and description input
+  function displayAddNewListButton() {
+    const newListDescriptionFields = document.querySelectorAll(
+      ".new-list-description"
+    );
+
+    newListDescriptionFields.forEach((newListDescriptionField) => {
+      newListDescriptionField.addEventListener("input", () => {
+        newListDescriptionField.nextElementSibling.style.display = "block";
+      });
+    });
+  }
+
   return {
     displayNewListInput,
-    displayNewListDescriptionInput
+    displayNewListDescriptionInput,
+    displayAddNewListButton
   };
 })();
 
