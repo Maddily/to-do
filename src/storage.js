@@ -163,6 +163,22 @@ const controlStorage = (function () {
     return list;
   }
 
+  function getLists(toDos) {
+    const parsedLists = parseStoredLists();
+
+    const lists = parsedLists.map((parsedList) => {
+      const list = recreateList(parsedList);
+
+      list.toDos = toDos.filter((todo) => {
+        return todo.listId === list.id;
+      });
+
+      return list;
+    });
+
+    return lists;
+  }
+
   return {
     setProject,
     updateProject,
