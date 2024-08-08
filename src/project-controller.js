@@ -316,6 +316,33 @@ const controlProjects = (function () {
     return deleteListIcon;
   }
 
+  /**
+   * Display the todo lists of a project below the project's heading
+   *
+   * @param {Element} projectContainer - The container of a specific project
+   * @param {Number} i - The index of a project in the projects array
+   * @param {Number} j - The index of a list in the toDoLists array
+   */
+  function displayProjectLists(projectContainer, i, j) {
+    const listContainer = document.createElement("div");
+    listContainer.classList.add("list");
+    listContainer.setAttribute(
+      "data-id",
+      controlProjects.projects[i].toDoLists[j].id
+    );
+
+    const listIcon = createListIcon();
+
+    const listTitle = document.createElement("span");
+    listTitle.textContent = controlProjects.projects[i].toDoLists[j].title;
+
+    const deleteListIcon = createDeleteListIcon(i, j);
+
+    listContainer.append(listIcon, listTitle, deleteListIcon);
+
+    projectContainer.appendChild(listContainer);
+  }
+
   return {
     createProject,
     removeProject,
