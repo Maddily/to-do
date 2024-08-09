@@ -599,6 +599,20 @@ const todoController = (function () {
     });
   }
 
+  // Enable updating the name of a ToDo when its details are hidden
+  function initializeUpdatingName() {
+    const todoNames = document.querySelectorAll(".todo-name");
+    todoNames.forEach((todoName) => {
+      todoName.addEventListener("input", () => {
+        const todoId = todoName.parentElement.parentElement.dataset.id;
+        const listId = todoName.parentElement.parentElement.dataset.list;
+        const projectId = todoName.parentElement.parentElement.dataset.project;
+
+        updateName(todoName.value, todoId, listId, projectId);
+      });
+    });
+  }
+
   return {};
 })();
 
