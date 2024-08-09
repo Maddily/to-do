@@ -700,6 +700,27 @@ const todoController = (function () {
     });
   }
 
+  // Delete an item in a checklist
+  function deleteItem(button, item) {
+    const todoId =
+      button.previousElementSibling.previousElementSibling.dataset.id;
+    const listId =
+      button.previousElementSibling.previousElementSibling.dataset.list;
+    const projectId =
+      button.previousElementSibling.previousElementSibling.dataset.project;
+
+    const project = controlProjects.projects.find(
+      (project) => project.id === projectId
+    );
+    const list = project.toDoLists.find((list) => list.id == listId);
+    const todo = list._toDos.find((todo) => todo.id == todoId);
+
+    todo.removeFromChecklist(item);
+
+    const todoContainer = button.parentElement.parentElement.parentElement;
+    displayTodoDetails(todoContainer, todoId, listId, projectId);
+  }
+
   return {};
 })();
 
