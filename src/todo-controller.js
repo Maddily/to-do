@@ -223,6 +223,15 @@ const todoController = (function () {
     return newTodoInput;
   }
 
+  // Create a button to add a new ToDo
+  function createAddTodoButton() {
+    const addTodoButton = document.createElement("button");
+    addTodoButton.classList.add("add-todo");
+    addTodoButton.textContent = "Add ToDo";
+
+    return addTodoButton;
+  }
+
   return {};
 })();
 
