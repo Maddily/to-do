@@ -471,6 +471,19 @@ const todoController = (function () {
     displayDueDate(todoContainer, todoId, listId, projectId);
   }
 
+  // Create a button to add new items to a checklist
+  function createAddItemButton() {
+    const addItemButton = document.createElement("button");
+    addItemButton.classList.add("add-item");
+    addItemButton.textContent = "Add Item";
+
+    const addItemButtonContainer = document.createElement("li");
+    addItemButtonContainer.classList.add("add-item-button-container");
+    addItemButtonContainer.appendChild(addItemButton);
+
+    return addItemButtonContainer;
+  }
+
   return {};
 })();
 
