@@ -119,6 +119,18 @@ const todoController = (function () {
     return checkTodo;
   }
 
+  // Create a container for a todo's name, description, checklist and due date
+  function createTodoContainer(todoId, projectId, listId) {
+    const todoContainer = document.createElement("div");
+
+    todoContainer.classList.add("todo-container");
+    todoContainer.setAttribute("data-id", todoId);
+    todoContainer.setAttribute("data-project", projectId);
+    todoContainer.setAttribute("data-list", listId);
+
+    return todoContainer;
+  }
+
   return {};
 })();
 
