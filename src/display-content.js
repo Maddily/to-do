@@ -164,6 +164,15 @@ const displayContent = (function () {
     return addTodoButton;
   }
 
+  function replaceDisplayedList(contentContainer, listContainer) {
+    if (contentContainer.children.length > 0) {
+      const existingListContainer = document.querySelector(".list-container");
+      contentContainer.replaceChild(listContainer, existingListContainer);
+    } else {
+      contentContainer.appendChild(listContainer);
+    }
+  }
+
   return {};
 })();
 
