@@ -92,6 +92,17 @@ const displayContent = (function () {
     return todoCheckbox;
   }
 
+  function createToDoContainer(todo, projectId, listId) {
+    const todoContainer = document.createElement("div");
+
+    todoContainer.classList.add("todo-container");
+    todoContainer.setAttribute("data-id", todo.id);
+    todoContainer.setAttribute("data-project", projectId);
+    todoContainer.setAttribute("data-list", listId);
+
+    return todoContainer;
+  }
+
   return {};
 })();
 
