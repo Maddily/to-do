@@ -688,6 +688,18 @@ const todoController = (function () {
     });
   }
 
+  // Enable deleting an item in a checklist
+  function initializeDeletingItem(checklist) {
+    const deleteItemButtons = checklist.querySelectorAll(".delete-item");
+
+    deleteItemButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const item = button.previousElementSibling.textContent;
+        deleteItem(button, item);
+      });
+    });
+  }
+
   return {};
 })();
 
