@@ -72,6 +72,14 @@ const displayContent = (function () {
     return listDescriptionContainer;
   }
 
+  function createToDosContainer(listId) {
+    const toDosContainer = document.createElement("div");
+    toDosContainer.classList.add("todos-container");
+    toDosContainer.setAttribute("data-id", listId);
+
+    return toDosContainer;
+  }
+
   return {};
 })();
 
