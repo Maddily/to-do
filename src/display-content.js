@@ -32,6 +32,18 @@ const displayContent = (function () {
     );
   }
 
+  function createListContainer(contentContainer, projectId) {
+    const listContainer = document.createElement("div");
+
+    clearListDisplay();
+    listContainer.innerHTML = "";
+    listContainer.classList.add("list-container");
+    listContainer.setAttribute("data-project", projectId);
+    contentContainer.appendChild(listContainer);
+
+    return listContainer;
+  }
+
   return {};
 })();
 
