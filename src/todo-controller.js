@@ -131,6 +131,17 @@ const todoController = (function () {
     return todoContainer;
   }
 
+  // Create a ToDo name input field to display and edit a ToDo's name
+  function createTodoName(todo) {
+    const todoName = document.createElement("input");
+
+    todoName.classList.add("todo-name");
+    todoName.type = "text";
+    todoName.value = todo.name;
+
+    return todoName;
+  }
+
   return {};
 })();
 
