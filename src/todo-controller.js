@@ -366,6 +366,16 @@ const todoController = (function () {
     }
   }
 
+  // Create notes element
+  function createNotes(todo) {
+    const notes = document.createElement("textarea");
+    notes.classList.add("notes");
+    notes.setAttribute("placeholder", "Notes");
+    notes.value = todo.notes ? todo.notes : "";
+
+    return notes;
+  }
+
   return {};
 })();
 
