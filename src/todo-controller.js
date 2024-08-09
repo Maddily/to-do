@@ -764,6 +764,21 @@ const todoController = (function () {
     return dueDateContainer;
   }
 
+  // Enable setting a due date for a ToDo
+  function setDueDate(todoContainer, todoId, listId, projectId) {
+    const dueDateInput = todoContainer.querySelector(".due-date-input");
+    const project = controlProjects.projects.find(
+      (project) => project.id === projectId
+    );
+    const list = project.toDoLists.find((list) => list.id == listId);
+    const todo = list._toDos.find((todo) => todo.id == todoId);
+
+    dueDateInput.addEventListener("input", () => {
+      todo.dueDate = parseISO(dueDateInput.value);
+      displayTodoDetails(todoContainer, todoId, listId, projectId);
+    });
+  }
+
   return {};
 })();
 
