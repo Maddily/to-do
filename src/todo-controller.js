@@ -440,6 +440,37 @@ const todoController = (function () {
     return checklist;
   }
 
+  // Display the details of a todo
+  function displayTodoDetails(todoContainer, todoId, listId, projectId) {
+    const project = controlProjects.projects.find(
+      (project) => project.id === projectId
+    );
+    const list = project.toDoLists.find((list) => list.id == listId);
+    const todo = list._toDos.find((todo) => todo.id == todoId);
+
+    todoContainer.innerHTML = "";
+
+    const todoName = createTodoName(todo);
+    const todoNameContainer = createTodoNameContainer(todo);
+    const notes = createNotes(todo);
+    const checklist = createChecklist(todo, projectId, listId);
+    const dueDateContainer = createDueDateButton();
+
+    todoContainer.append(todoNameContainer, notes, checklist, dueDateContainer);
+
+    createNewCheckItemInput(checklist);
+    displayCheckItemInput(checklist);
+    displayAddNewItemButton(checklist);
+    initializeItemCreation(checklist, todoId, listId, projectId);
+    displayDeleteItemButton(checklist);
+    initializeDeletingItem(checklist);
+    initializeChecklistSelection(todoContainer);
+    initializeUpdatingNameInDetails(todoName, todoId, listId, projectId);
+    initializeUpdatingNotes(notes, todoId, listId, projectId);
+    setDueDate(todoContainer, todoId, listId, projectId);
+    displayDueDate(todoContainer, todoId, listId, projectId);
+  }
+
   return {};
 })();
 
