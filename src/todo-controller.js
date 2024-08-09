@@ -185,6 +185,34 @@ const todoController = (function () {
     return todoNameContainer;
   }
 
+  /**
+   * Create and configure a todo item, its checkbox,
+   * container and expand/hide button.
+   */
+  function createTodoItem(todo, projectId, listId) {
+    // The container for a whole todo
+    const todoItem = document.createElement("div");
+    todoItem.classList.add("todo-item");
+
+    // The checkbox for completing a todo
+    const checkTodo = createTodoCheckbox(todo.id, projectId, listId);
+
+    // The container for a todo's name, description, checklist and due date
+    const todoContainer = createTodoContainer(todo.id, projectId, listId);
+
+    // The container for a todo's name
+    const todoNameContainer = createTodoNameContainer(todo);
+
+    todoContainer.appendChild(todoNameContainer);
+
+    // A chevron button that toggles showing/hiding a todo's details
+    const expandIcon = createChevronButton();
+
+    todoItem.append(checkTodo, todoContainer, expandIcon);
+
+    return todoItem;
+  }
+
   return {};
 })();
 
