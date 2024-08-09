@@ -261,7 +261,11 @@ const displayContent = (function () {
     content.textContent = "";
   }
 
-  return {};
+  return {
+    initializeListDisplay,
+    clearListDisplay,
+    enableSelectingAProject
+  };
 })();
 
 export default displayContent;
