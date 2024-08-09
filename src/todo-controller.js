@@ -587,6 +587,18 @@ const todoController = (function () {
     );
   }
 
+  // Enable updating the name of a ToDo when its details are expanded
+  function initializeUpdatingNameInDetails(
+    todoName,
+    todoId,
+    listId,
+    projectId
+  ) {
+    todoName.addEventListener("input", () => {
+      updateName(todoName.value, todoId, listId, projectId);
+    });
+  }
+
   return {};
 })();
 
