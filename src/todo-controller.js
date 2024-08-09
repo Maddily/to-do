@@ -624,6 +624,13 @@ const todoController = (function () {
     todo.name = value;
   }
 
+  // Enable updating a ToDo's notes
+  function initializeUpdatingNotes(notes, todoId, listId, projectId) {
+    notes.addEventListener("input", () => {
+      updateNotes(notes.value, projectId, listId, todoId);
+    });
+  }
+
   return {};
 })();
 
