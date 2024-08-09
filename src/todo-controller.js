@@ -315,6 +315,44 @@ const todoController = (function () {
     }
   }
 
+  // Toggle the chevron icon to indicate the next action on subsequent click
+  function switchChevron(todoItem, chevron) {
+    let className;
+    // `className` is a flag that will determine toggling the icon
+    if (chevron.classList.contains("expand")) {
+      className = "hide";
+    } else {
+      className = "expand";
+    }
+
+    // Replace the current chevron icon with an expand/hide one
+    todoItem.removeChild(chevron);
+    const svgNamespace = "http://www.w3.org/2000/svg";
+
+    const expandSvg = document.createElementNS(svgNamespace, "svg");
+    expandSvg.setAttribute("xmlns", svgNamespace);
+    expandSvg.setAttribute("viewBox", "0 0 24 24");
+    expandSvg.classList.add("chevron", className);
+
+    const expandTitle = document.createElementNS(svgNamespace, "title");
+    expandTitle.textContent =
+      className === "expand" ? "Expand Details" : "Hide Details";
+
+    const expandPath = document.createElementNS(svgNamespace, "path");
+    expandPath.setAttribute(
+      "d",
+      className === "expand"
+        ? "M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+        : "M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
+    );
+    expandPath.setAttribute("fill", "#717ed4");
+
+    expandSvg.append(expandTitle, expandPath);
+
+    // The chevron icon is added next to a todo's name
+    todoItem.appendChild(expandSvg);
+  }
+
   return {};
 })();
 
