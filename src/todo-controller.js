@@ -232,6 +232,30 @@ const todoController = (function () {
     return addTodoButton;
   }
 
+  // Display a list's ToDo items
+  function displayTodos(todos, projectId, listId) {
+    const todosContainer = document.querySelector(".todos-container");
+    // Clear the current todos before redisplaying the list's todos
+    todosContainer.textContent = "";
+
+    for (const todo of todos) {
+      const todoItem = createTodoItem(todo, projectId, listId);
+      todosContainer.appendChild(todoItem);
+    }
+
+    // An input field for adding a new todo
+    const newTodoInput = createNewTodoInput();
+
+    // A button that displays only if there's input in the new todo input field
+    const addTodoButton = createAddTodoButton();
+
+    // The new todo input field and button are on the same level as each todo
+    todosContainer.append(newTodoInput, addTodoButton);
+
+    // After displaying the todos, enable updating their names
+    initializeUpdatingName();
+  }
+
   return {};
 })();
 
