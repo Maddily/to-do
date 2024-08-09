@@ -526,6 +526,18 @@ const todoController = (function () {
     });
   }
 
+  // Display a button to add a new item to a checklist
+  function displayAddNewItemButton(checklist) {
+    const newItemField = checklist.querySelector(".new-check-item");
+
+    newItemField.addEventListener("input", () => {
+      newItemField.parentElement.nextElementSibling.style.display = "block";
+      newItemField.parentElement.nextElementSibling.querySelector(
+        ".add-item"
+      ).style.display = "block";
+    });
+  }
+
   return {};
 })();
 
