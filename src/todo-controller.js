@@ -213,6 +213,16 @@ const todoController = (function () {
     return todoItem;
   }
 
+  // Create an input field for adding a new ToDo
+  function createNewTodoInput() {
+    const newTodoInput = document.createElement("input");
+    newTodoInput.classList.add("new-todo-name");
+    newTodoInput.type = "text";
+    newTodoInput.placeholder = "New ToDo";
+
+    return newTodoInput;
+  }
+
   return {};
 })();
 
