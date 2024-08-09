@@ -44,6 +44,20 @@ const displayContent = (function () {
     return listContainer;
   }
 
+  function createListTitleContainer(title, listId) {
+    const listTitleContainer = document.createElement("div");
+    listTitleContainer.classList.add("list-title-container");
+
+    const listTitle = document.createElement("input");
+    listTitle.classList.add("list-title");
+    listTitle.setAttribute("data-id", listId);
+    listTitle.value = title;
+
+    listTitleContainer.appendChild(listTitle);
+
+    return listTitleContainer;
+  }
+
   return {};
 })();
 
