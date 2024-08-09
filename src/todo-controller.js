@@ -653,6 +653,24 @@ const todoController = (function () {
     });
   }
 
+  // Toggle a checklist item's checked status
+  function toggleCheckedStatus(checkItem) {
+    const project = controlProjects.projects.find(
+      (project) => project.id === checkItem.dataset.project
+    );
+    const list = project.toDoLists.find(
+      (list) => list.id == checkItem.dataset.list
+    );
+    const todo = list._toDos.find((todo) => todo.id == checkItem.dataset.id);
+
+    const item =
+      checkItem.nodeName.toLowerCase() === "input"
+        ? checkItem.nextElementSibling.textContent
+        : checkItem.textContent;
+
+    todo.toggleCheckedStatus(item);
+  }
+
   return {};
 })();
 
