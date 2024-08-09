@@ -116,6 +116,35 @@ const displayContent = (function () {
     return todoNameContainer;
   }
 
+  function createExpandIcon() {
+    const expandIcon = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "svg"
+    );
+    expandIcon.setAttribute("viewBox", "0 0 24 24");
+    expandIcon.classList.add("chevron", "expand");
+
+    const expandTitle = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "title"
+    );
+    expandTitle.textContent = "Expand Details";
+
+    const expandPath = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "path"
+    );
+    expandPath.setAttribute(
+      "d",
+      "M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+    );
+    expandPath.setAttribute("fill", "#717ed4");
+
+    expandIcon.append(expandTitle, expandPath);
+
+    return expandIcon;
+  }
+
   return {};
 })();
 
