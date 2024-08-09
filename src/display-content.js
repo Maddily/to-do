@@ -192,6 +192,59 @@ const displayContent = (function () {
     todoController.initializeUpdatingName();
   }
 
+  function createListContent(title, description, todos, listId, projectId) {
+    const contentContainer = document.querySelector(".content");
+    const listContainer = createListContainer(contentContainer, projectId);
+
+    const listTitleContainer = createListTitleContainer(title, listId);
+
+    const listDescriptionContainer = createListDescriptionContainer(
+      description,
+      listId
+    );
+
+    const toDosContainer = createToDosContainer(listId);
+
+    listContainer.append(
+      listTitleContainer,
+      listDescriptionContainer,
+      toDosContainer
+    );
+
+    for (const todo of todos) {
+      const todoItem = document.createElement("div");
+      todoItem.classList.add("todo-item");
+
+      const todoCheckbox = createToDoCheckbox(todo, projectId, listId);
+
+      const todoContainer = createToDoContainer(todo, projectId, listId);
+
+      const todoNameContainer = createToDoNameContainer(todo);
+
+      todoContainer.appendChild(todoNameContainer);
+
+      const expandIcon = createExpandIcon();
+
+      todoItem.append(todoCheckbox, todoContainer, expandIcon);
+
+      toDosContainer.appendChild(todoItem);
+    }
+
+    const newTodoNameInput = createNewToDoInput();
+
+    const addTodoButton = createAddToDoButton();
+
+    toDosContainer.append(newTodoNameInput, addTodoButton);
+
+    /**
+     * If a list is already being displayed, replace it
+     * with the list requested.
+     */
+    replaceDisplayedList(contentContainer, listContainer);
+
+    attachEventListeners();
+  }
+
   return {};
 })();
 
