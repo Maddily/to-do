@@ -403,6 +403,43 @@ const todoController = (function () {
     return deleteItem;
   }
 
+  // Create a checklist in the DOM
+  function createChecklist(todo, projectId, listId) {
+    const checklist = document.createElement("ul");
+    checklist.classList.add("checklist");
+
+    let i = 0;
+    for (const item in todo.checklist) {
+      const checkItemContainer = document.createElement("li");
+      checkItemContainer.classList.add("check-item-container");
+
+      const checkItemLabel = document.createElement("label");
+      checkItemLabel.setAttribute("for", `check-item${i}-${todo.id}`);
+      checkItemLabel.textContent = item;
+
+      const checkItem = document.createElement("input");
+      checkItem.type = "checkbox";
+      checkItem.setAttribute("id", `check-item${i}-${todo.id}`);
+      checkItem.classList.add("check-item");
+      checkItem.setAttribute("data-id", todo.id);
+      checkItem.setAttribute("data-project", projectId);
+      checkItem.setAttribute("data-list", listId);
+
+      if (todo.checklist[item]) {
+        checkItem.checked = true;
+      }
+
+      const deleteItem = createDeleteItemButton();
+
+      checkItemContainer.append(checkItem, checkItemLabel, deleteItem);
+      checklist.appendChild(checkItemContainer);
+
+      i++;
+    }
+
+    return checklist;
+  }
+
   return {};
 })();
 
