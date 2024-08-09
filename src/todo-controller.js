@@ -538,6 +538,25 @@ const todoController = (function () {
     });
   }
 
+  /**
+   * Add event listeners for Enter key press on input field
+   * and for mouse click on the button to add an item to a checklist
+   */
+  function initializeItemCreation(checklist, todoId, listId, projectId) {
+    const addNewTodoButton = checklist.querySelector(".add-item");
+    const newItemField = checklist.querySelector(".new-check-item");
+
+    newItemField.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        createItem(newItemField, newItemField.value, todoId, listId, projectId);
+      }
+    });
+
+    addNewTodoButton.addEventListener("click", () => {
+      createItem(newItemField, newItemField.value, todoId, listId, projectId);
+    });
+  }
+
   return {};
 })();
 
