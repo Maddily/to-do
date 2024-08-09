@@ -106,6 +106,19 @@ const todoController = (function () {
     }
   }
 
+  // Create a checkbox for completing a ToDo
+  function createTodoCheckbox(todoId, projectId, listId) {
+    const checkTodo = document.createElement("input");
+
+    checkTodo.type = "checkbox";
+    checkTodo.classList.add("check-todo");
+    checkTodo.setAttribute("data-id", todoId);
+    checkTodo.setAttribute("data-project", projectId);
+    checkTodo.setAttribute("data-list", listId);
+
+    return checkTodo;
+  }
+
   return {};
 })();
 
