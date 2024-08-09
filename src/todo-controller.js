@@ -779,6 +779,28 @@ const todoController = (function () {
     });
   }
 
+  // Display the due date of a ToDo
+  function displayDueDate(todoContainer, todoId, listId, projectId) {
+    const project = controlProjects.projects.find(
+      (project) => project.id === projectId
+    );
+    const list = project.toDoLists.find((list) => list.id == listId);
+    const todo = list._toDos.find((todo) => todo.id == todoId);
+
+    const dueDate = document.createElement("span");
+    dueDate.classList.add("due-date");
+    if (todo.dueDate) {
+      dueDate.textContent = isToday(new Date(convertDateFormat(todo.dueDate)))
+        ? "Due Today"
+        : isTomorrow(new Date(convertDateFormat(todo.dueDate)))
+        ? "Due Tomorrow"
+        : `Due ${todo.dueDate}`;
+    }
+
+    const dueDateContainer = todoContainer.querySelector(".due-date-container");
+    dueDateContainer.prepend(dueDate);
+  }
+
   return {};
 })();
 
