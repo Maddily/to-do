@@ -283,6 +283,38 @@ const todoController = (function () {
     });
   }
 
+  // Listen for clicks on a todo's expand/hide button to expand/hide details
+  function initializeDisplayingTodoDetails() {
+    const todosContainer = document.querySelector(".todos-container");
+
+    if (todosContainer) {
+      todosContainer.addEventListener("click", (event) => {
+        if (event.target.classList.contains("chevron")) {
+          const chevron = event.target;
+          // A displayed todo's name
+          const todoHeading = chevron.previousElementSibling
+            .querySelector(".todo-name-container")
+            .querySelector(".todo-name");
+
+          // If the details are already displayed, hide them
+          if (chevron.classList.contains("hide")) {
+            hideTodoDetails(todoHeading.parentElement);
+          } else {
+            // Pass the todo element, the todo id, the list id and the project id
+            displayTodoDetails(
+              todoHeading.parentElement.parentElement,
+              todoHeading.parentElement.parentElement.dataset.id,
+              todoHeading.parentElement.parentElement.dataset.list,
+              todoHeading.parentElement.parentElement.dataset.project
+            );
+          }
+          // Toggle the chevron icon to indicate the next action on subsequent click
+          switchChevron(chevron.parentElement, chevron);
+        }
+      });
+    }
+  }
+
   return {};
 })();
 
