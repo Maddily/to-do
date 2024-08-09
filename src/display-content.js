@@ -58,6 +58,20 @@ const displayContent = (function () {
     return listTitleContainer;
   }
 
+  function createListDescriptionContainer(description, listId) {
+    const listDescriptionContainer = document.createElement("div");
+    listDescriptionContainer.classList.add("list-description-container");
+
+    const listDescription = document.createElement("textarea");
+    listDescription.classList.add("list-description");
+    listDescription.setAttribute("data-id", listId);
+    listDescription.value = description;
+
+    listDescriptionContainer.appendChild(listDescription);
+
+    return listDescriptionContainer;
+  }
+
   return {};
 })();
 
