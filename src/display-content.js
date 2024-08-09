@@ -245,6 +245,17 @@ const displayContent = (function () {
     attachEventListeners();
   }
 
+  function enableSelectingAProject() {
+    const selectAProject = document.querySelector(".select-project-button");
+    selectAProject.addEventListener("click", () => {
+      const menuButton = document.querySelector(".menu");
+      const aside = document.querySelector("aside");
+
+      aside.classList.toggle("display-menu");
+      menuButton.classList.toggle("menu-button-to-right");
+    });
+  }
+
   return {};
 })();
 
