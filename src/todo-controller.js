@@ -256,6 +256,33 @@ const todoController = (function () {
     initializeUpdatingName();
   }
 
+  // When a todo's checkbox is selected, delete todo
+  function completeTodo() {
+    // The checkboxes (one next to each todo) to complete todos
+    const todoChecks = document.querySelectorAll(".check-todo");
+
+    todoChecks.forEach((todoCheck) => {
+      todoCheck.addEventListener("click", () => {
+        const todoId = todoCheck.dataset.id;
+        const listId = todoCheck.dataset.list;
+        const projectId = todoCheck.dataset.project;
+
+        const project = controlProjects.projects.find(
+          (project) => project.id === projectId
+        );
+        const list = project.toDoLists.find((list) => list.id == listId);
+        const todo = list._toDos.find((todo) => todo.id == todoId);
+
+        // A method on the ToDoList class
+        list.removeToDo(todo);
+
+        // Redisplay the todos after completing a todo
+        displayTodos(list._toDos, projectId, listId);
+        reAttachEventListeners();
+      });
+    });
+  }
+
   return {};
 })();
 
