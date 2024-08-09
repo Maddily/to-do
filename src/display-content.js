@@ -256,6 +256,11 @@ const displayContent = (function () {
     });
   }
 
+  function clearListDisplay() {
+    const content = document.querySelector(".content");
+    content.textContent = "";
+  }
+
   return {};
 })();
 
