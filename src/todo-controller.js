@@ -801,6 +801,13 @@ const todoController = (function () {
     dueDateContainer.prepend(dueDate);
   }
 
+  // Change the format of a date string
+  function convertDateFormat(dateString) {
+    const [day, month, year] = dateString.split("-");
+
+    return `${year}-${month}-${day}`;
+  }
+
   return {};
 })();
 
