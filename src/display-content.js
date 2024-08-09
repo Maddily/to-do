@@ -155,6 +155,15 @@ const displayContent = (function () {
     return newTodoNameInput;
   }
 
+  function createAddToDoButton() {
+    const addTodoButton = document.createElement("button");
+
+    addTodoButton.classList.add("add-todo");
+    addTodoButton.textContent = "Add ToDo";
+
+    return addTodoButton;
+  }
+
   return {};
 })();
 
