@@ -808,7 +808,16 @@ const todoController = (function () {
     return `${year}-${month}-${day}`;
   }
 
-  return {};
+  return {
+    displayNewTodoInput,
+    displayAddNewTodoButton,
+    initializeTodoCreation,
+    completeTodo,
+    initializeDisplayingTodoDetails,
+    initializeUpdatingName,
+    initializeUpdatingNotes,
+    displayCheckItemInput
+  };
 })();
 
 export default todoController;
