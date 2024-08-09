@@ -173,6 +173,25 @@ const displayContent = (function () {
     }
   }
 
+  function attachEventListeners() {
+    // Enable displaying new todo input
+    todoController.displayNewTodoInput();
+    // Enable displaying new todo button
+    todoController.displayAddNewTodoButton();
+    // Enable creating new todos
+    todoController.initializeTodoCreation();
+    // Enable completing todos
+    todoController.completeTodo();
+    // Enable displaying todo details
+    todoController.initializeDisplayingTodoDetails();
+    // Enable renaming a list
+    listController.updateListTitle();
+    // Enable updating a list's description
+    listController.updateListDescription();
+    // Enable updating a todo's name
+    todoController.initializeUpdatingName();
+  }
+
   return {};
 })();
 
