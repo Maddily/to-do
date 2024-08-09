@@ -504,6 +504,28 @@ const todoController = (function () {
     checklist.append(newCheckItemInputContainer, addItemButtonContainer);
   }
 
+  // Display an input field when a checklist is hovered over
+  function displayCheckItemInput(checklist) {
+    const newCheckItemInputContainer = checklist.querySelector(
+      ".new-check-item-input-container"
+    );
+    const newCheckItemInput = checklist.querySelector(".new-check-item");
+
+    checklist.addEventListener("mouseover", () => {
+      newCheckItemInputContainer.style.display = "block";
+      newCheckItemInput.style.display = "block";
+    });
+    checklist.addEventListener("mouseout", () => {
+      if (!newCheckItemInput.value) {
+        newCheckItemInputContainer.style.display = "none";
+        newCheckItemInput.style.display = "none";
+        if (newCheckItemInputContainer.nextElementSibling) {
+          newCheckItemInputContainer.nextElementSibling.style.display = "none";
+        }
+      }
+    });
+  }
+
   return {};
 })();
 
