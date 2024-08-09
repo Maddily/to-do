@@ -484,6 +484,26 @@ const todoController = (function () {
     return addItemButtonContainer;
   }
 
+  // Create an input field for adding new items to a checklist
+  function createNewCheckItemInput(checklist) {
+    const newCheckItemInput = document.createElement("input");
+    newCheckItemInput.classList.add("new-check-item");
+    newCheckItemInput.type = "text";
+    if (checklist.hasChildNodes()) {
+      newCheckItemInput.placeholder = "New Item";
+    } else {
+      newCheckItemInput.placeholder = "Add item to checklist";
+    }
+
+    const newCheckItemInputContainer = document.createElement("li");
+    newCheckItemInputContainer.classList.add("new-check-item-input-container");
+    newCheckItemInputContainer.appendChild(newCheckItemInput);
+
+    const addItemButtonContainer = createAddItemButton();
+
+    checklist.append(newCheckItemInputContainer, addItemButtonContainer);
+  }
+
   return {};
 })();
 
