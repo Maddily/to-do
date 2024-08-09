@@ -145,6 +145,16 @@ const displayContent = (function () {
     return expandIcon;
   }
 
+  function createNewToDoInput() {
+    const newTodoNameInput = document.createElement("input");
+
+    newTodoNameInput.classList.add("new-todo-name");
+    newTodoNameInput.type = "text";
+    newTodoNameInput.placeholder = "New ToDo";
+
+    return newTodoNameInput;
+  }
+
   return {};
 })();
 
