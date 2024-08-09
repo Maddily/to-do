@@ -613,6 +613,17 @@ const todoController = (function () {
     });
   }
 
+  // Update a ToDo's name
+  function updateName(value, todoId, listId, projectId) {
+    const project = controlProjects.projects.find(
+      (project) => project.id === projectId
+    );
+    const list = project.toDoLists.find((list) => list.id == listId);
+    const todo = list._toDos.find((todo) => todo.id == todoId);
+
+    todo.name = value;
+  }
+
   return {};
 })();
 
