@@ -353,6 +353,19 @@ const todoController = (function () {
     todoItem.appendChild(expandSvg);
   }
 
+  /**
+   * Hides the details of a todo item, assuming that
+   * the todo item details are currently visible.
+   *
+   * @param {Element} todoHeading - Todo name container
+   */
+  function hideTodoDetails(todoHeading) {
+    // Delete all sibling elements of todoHeading, which are a todo's details.
+    while (todoHeading.nextElementSibling) {
+      todoHeading.parentElement.removeChild(todoHeading.nextElementSibling);
+    }
+  }
+
   return {};
 })();
 
