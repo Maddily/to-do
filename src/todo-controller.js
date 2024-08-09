@@ -557,6 +557,36 @@ const todoController = (function () {
     });
   }
 
+  // Add an item to a checklist
+  function createItem(newItemField, value, todoId, listId, projectId) {
+    const project = controlProjects.projects.find((project) => {
+      return project.id === projectId;
+    });
+    const list = project.toDoLists.find((todoList) => {
+      return todoList.id == listId;
+    });
+    const todo = list.toDos.find((todo) => todo.id == todoId);
+
+    // No duplicate item names
+    const itemExists = value in todo.checklist;
+
+    if (itemExists) return;
+
+    // Add the item to the checklist
+    todo.addToChecklist(value);
+
+    // Clear the todo input field
+    newItemField.value = "";
+
+    // Re-display the checklist
+    displayTodoDetails(
+      newItemField.parentElement.parentElement.parentElement,
+      todoId,
+      listId,
+      projectId
+    );
+  }
+
   return {};
 })();
 
