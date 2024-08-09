@@ -642,6 +642,17 @@ const todoController = (function () {
     todo.notes = value;
   }
 
+  // Enable selecting items from a checklist
+  function initializeChecklistSelection(todoContainer) {
+    todoContainer.addEventListener("click", (event) => {
+      if (event.target.classList.contains("check-item")) {
+        const checkItem = event.target;
+        // Toggle current checked status
+        toggleCheckedStatus(checkItem);
+      }
+    });
+  }
+
   return {};
 })();
 
