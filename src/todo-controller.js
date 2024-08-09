@@ -376,6 +376,33 @@ const todoController = (function () {
     return notes;
   }
 
+  // Create a button that will be used to delete an item in a checklist
+  function createDeleteItemButton() {
+    const deleteItem = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "svg"
+    );
+    deleteItem.setAttribute("viewBox", "0 0 24 24");
+    deleteItem.classList.add("delete-item");
+
+    const deleteItemTitle = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "title"
+    );
+    deleteItemTitle.textContent = "Delete Item";
+
+    const deleteItemPath = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "path"
+    );
+    deleteItemPath.setAttribute("d", "M19,13H5V11H19V13Z");
+    deleteItemPath.setAttribute("fill", "#717ed4");
+
+    deleteItem.append(deleteItemTitle, deleteItemPath);
+
+    return deleteItem;
+  }
+
   return {};
 })();
 
