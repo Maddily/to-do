@@ -671,6 +671,23 @@ const todoController = (function () {
     todo.toggleCheckedStatus(item);
   }
 
+  // Display a button to delete an item in a checklist
+  function displayDeleteItemButton(checklist) {
+    const checkItemContainers = checklist.querySelectorAll(
+      ".check-item-container"
+    );
+
+    checkItemContainers.forEach((checkItemContainer) => {
+      checkItemContainer.addEventListener("mouseover", () => {
+        checkItemContainer.querySelector(".delete-item").style.display =
+          "block";
+      });
+      checkItemContainer.addEventListener("mouseout", () => {
+        checkItemContainer.querySelector(".delete-item").style.display = "none";
+      });
+    });
+  }
+
   return {};
 })();
 
