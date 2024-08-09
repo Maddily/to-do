@@ -67,6 +67,45 @@ const todoController = (function () {
     return todoExists;
   }
 
+  /**
+   * Create a ToDo
+   *
+   * @param {Element} button - A button to add a new ToDo
+   */
+  function createTodo(button) {
+    const todoName = button.previousElementSibling.value.trim();
+    const listId = button.parentElement.dataset.id;
+    const projectId = button.parentElement.parentElement.dataset.project;
+
+    /**
+     * Make sure todo name is present,
+     * then find the list to which a todo is to be added.
+     */
+    if (todoName) {
+      const project = controlProjects.projects.find((project) => {
+        return project.id === projectId;
+      });
+      const list = project.toDoLists.find((todoList) => {
+        return todoList.id == listId;
+      });
+
+      // No duplicate todo names
+      if (isTodoPresent(list, todoName)) return;
+
+      // Create the todo
+      const todo = new ToDo(todoName, undefined, listId);
+
+      list.addToDo(todo);
+
+      // Clear the todo input field
+      button.previousElementSibling.value = "";
+
+      // Redisplay the ToDos after creating a new one
+      displayTodos(list._toDos, projectId, listId);
+      reAttachEventListeners();
+    }
+  }
+
   return {};
 })();
 
