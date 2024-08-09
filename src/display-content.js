@@ -80,6 +80,18 @@ const displayContent = (function () {
     return toDosContainer;
   }
 
+  function createToDoCheckbox(todo, projectId, listId) {
+    const todoCheckbox = document.createElement("input");
+
+    todoCheckbox.type = "checkbox";
+    todoCheckbox.classList.add("check-todo");
+    todoCheckbox.setAttribute("data-id", todo.id);
+    todoCheckbox.setAttribute("data-project", projectId);
+    todoCheckbox.setAttribute("data-list", listId);
+
+    return todoCheckbox;
+  }
+
   return {};
 })();
 
