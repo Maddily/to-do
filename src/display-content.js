@@ -103,6 +103,19 @@ const displayContent = (function () {
     return todoContainer;
   }
 
+  function createToDoNameContainer(todo) {
+    const todoNameContainer = document.createElement("div");
+    todoNameContainer.classList.add("todo-name-container");
+
+    const todoName = document.createElement("input");
+    todoName.classList.add("todo-name");
+    todoName.type = "text";
+    todoName.value = todo.name;
+    todoNameContainer.appendChild(todoName);
+
+    return todoNameContainer;
+  }
+
   return {};
 })();
 
